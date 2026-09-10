@@ -47,6 +47,7 @@ public class App
         driverfirefox.get("https://www.youtube.com");
 //    	  driverfirefox.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
         	
+        driverfirefox.navigate().to("https://www.clubic.com");
         
         // Web driver pour acceder au navigateur Microsoft Edge
    	    System.setProperty("webdriver.edge.driver", "./driver/msedgedriver.exe");
@@ -56,20 +57,32 @@ public class App
        // Ouverture du navigateur Microsoft Edge puis accession au site web
         DriverMedge.get("https://www.youtube.com");
         
-        DriverMedge.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        DriverMedge.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
-        DriverMedge.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+//        DriverMedge.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        DriverMedge.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
+//        DriverMedge.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         
        // Autre méthode d'ouverture du navigateur Microsoft Edge puis accession au site web 
        // Puisque j'ai mis youtube au debut ça rediriger vers www.clubic.com
         DriverMedge.navigate().to("https://www.clubic.com");
         
         // reccuperer le titre d'un site web, on fait 
-        DriverMedge.getTitle();
+      //  DriverMedge.getTitle();
         
-        // fermer le navigateur 
-        DriverMedge.close();
-        DriverMedge.quit();
+        // permet de maximiser l'affichage de l'écran
+        DriverMedge.manage().window().maximize();
+        
+        // permet de minimiser l'affichage de l'écran
+        DriverMedge.manage().window().minimize();
+        
+        // permet de plein écran l'affichage de l'écran
+        DriverMedge.manage().window().fullscreen();
+        
+        // fermer le navigateur
+        // pour une seule fenetre
+    //    DriverMedge.close();
+        
+        // pour tout le navigateur pour plusieurs fenetre
+  //      DriverMedge.quit();
         
         
         // cliquer sur le bouton
