@@ -1,6 +1,8 @@
 package projetselenium.projetselenium;
 
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,16 +27,23 @@ public class App
         
         // Ouverture du navigateur Chrome puis accession au site web 
          driver.get("https://www.youtube.com");
-    	 driver.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
+//    	 driver.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
      	
         // Web driver pour acceder au navigateur Firefox
     	 System.setProperty("webdriver.gecko.driver", "./driver/geckodriver.exe");
     	 WebDriverManager.firefoxdriver().setup();
          WebDriver driverfirefox = new FirefoxDriver();	
         
+         
+         // Temps d'attente 
+         
+        driverfirefox.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driverfirefox.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
+//        driverfirefox.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        
         // Ouverture du navigateur Firefox puis accession au site web
         driverfirefox.get("https://www.youtube.com");
-    	  driverfirefox.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
+//    	  driverfirefox.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
         	
         
         // Web driver pour acceder au navigateur Microsoft Edge
@@ -46,7 +55,7 @@ public class App
         DriverMedge.get("https://www.youtube.com");
         
         // cliquer sur le bouton
-        DriverMedge.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
+//        DriverMedge.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
         
         
     }
