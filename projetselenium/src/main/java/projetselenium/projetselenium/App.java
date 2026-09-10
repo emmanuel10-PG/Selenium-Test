@@ -31,6 +31,8 @@ public class App
      	
         // Web driver pour acceder au navigateur Firefox
     	 System.setProperty("webdriver.gecko.driver", "./driver/geckodriver.exe");
+    	 
+    	 // oubien on peut ecrire cette fonction
     	 WebDriverManager.firefoxdriver().setup();
          WebDriver driverfirefox = new FirefoxDriver();	
         
@@ -39,7 +41,7 @@ public class App
          
         driverfirefox.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driverfirefox.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
-//        driverfirefox.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        driverfirefox.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         
         // Ouverture du navigateur Firefox puis accession au site web
         driverfirefox.get("https://www.youtube.com");
@@ -53,6 +55,14 @@ public class App
        
        // Ouverture du navigateur Microsoft Edge puis accession au site web
         DriverMedge.get("https://www.youtube.com");
+        
+        DriverMedge.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        DriverMedge.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
+        DriverMedge.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        
+       // Autre méthode d'ouverture du navigateur Microsoft Edge puis accession au site web 
+       // Puisque j'ai mis youtube au debut ça rediriger vers www.clubic.com
+        DriverMedge.navigate().to("https://www.clubic.com");
         
         // cliquer sur le bouton
 //        DriverMedge.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
