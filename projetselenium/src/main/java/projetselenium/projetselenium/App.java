@@ -64,6 +64,14 @@ public class App
        // Puisque j'ai mis youtube au debut ça rediriger vers www.clubic.com
         DriverMedge.navigate().to("https://www.clubic.com");
         
+        // reccuperer le titre d'un site web, on fait 
+        DriverMedge.getTitle();
+        
+        // fermer le navigateur 
+        DriverMedge.close();
+        DriverMedge.quit();
+        
+        
         // cliquer sur le bouton
 //        DriverMedge.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
         
