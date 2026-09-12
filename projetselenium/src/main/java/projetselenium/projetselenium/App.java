@@ -96,11 +96,16 @@ public class App
         System.out.println(positionPage.getX());
         System.out.println(positionPage.getY());
         
-        DriverMedge.manage().window().setPosition(new Point(700, 950));
+  //      DriverMedge.manage().window().setPosition(new Point(700, 950));
         
        // Autre méthode d'ouverture du navigateur Microsoft Edge puis accession au site web 
        // Puisque j'ai mis youtube au debut ça rediriger vers www.clubic.com
         DriverMedge.navigate().to("https://www.clubic.com");
+        
+        DriverMedge.findElement(By.cssSelector("#didomi-notice-agree-button")).click();
+        DriverMedge.findElement(By.cssSelector("button.mlnaxt-6:nth-child(1) > svg:nth-child(1)")).click();
+        
+        DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")).sendKeys("tester clubic");
         
         // cliquer sur le bouton
 //        DriverMedge.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
