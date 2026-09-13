@@ -1,14 +1,20 @@
 package projetselenium.projetselenium;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -19,7 +25,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws IOException
     {
        
     	// Test automatisé ouverture d'une page avec Selenium
@@ -107,13 +113,20 @@ public class App
         DriverMedge.findElement(By.cssSelector("button.mlnaxt-6:nth-child(1) > svg:nth-child(1)")).click();
         
         // 1ere methode pour ecrire dans un champs puis envoyer
-        DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")).sendKeys("tester clubic");
-        DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")).submit();
+    //    DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")).sendKeys("tester clubic");
+       // DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")).submit();
         
         // 2e methode pour ecrire dans un champs puis envoyer avec WebElement
-        WebElement elementRecherche = DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)"));
+        
+/*        WebElement elementRecherche = DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)"));
         elementRecherche.sendKeys(" testeur");
-        elementRecherche.submit();
+        elementRecherche.submit();   */
+        
+        
+        // Capture d'ecran via le navigateur
+        File scrFile = (File)(((TakesScreenshot) DriverMedge).getScreenshotAs(OutputType.FILE));
+        FileUtils.copyFile(scrFile,new File("./img1.png"));
+        
         
         // cliquer sur le bouton
 //        DriverMedge.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
