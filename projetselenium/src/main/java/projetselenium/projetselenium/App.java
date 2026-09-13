@@ -16,6 +16,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.locators.RelativeLocator;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.edge.EdgeDriver;
 
@@ -113,19 +115,27 @@ public class App
         DriverMedge.findElement(By.cssSelector("button.mlnaxt-6:nth-child(1) > svg:nth-child(1)")).click();
         
         // 1ere methode pour ecrire dans un champs puis envoyer
-    //    DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")).sendKeys("tester clubic");
-       // DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")).submit();
+ /*       DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")).sendKeys("tester clubic");
+        DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")).submit();                        */
         
         // 2e methode pour ecrire dans un champs puis envoyer avec WebElement
         
-/*        WebElement elementRecherche = DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)"));
-        elementRecherche.sendKeys(" testeur");
-        elementRecherche.submit();   */
+     // Ecrire sur les champs sans avoir faire inspecter le champs puis l'inserer un mot above : avant
+        // on cherche d'abors l'element d'en bas puis on ecrit en fonction pour avoir le composant du haut
+        WebElement elementRecherche = DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)"));
+//      elementRecherche.sendKeys(" testeur");
+//      elementRecherche.submit();  
+        elementRecherche.findElement(RelativeLocator.with(By.tagName("input")).above(elementRecherche)).sendKeys("test donnees avant");
+        
+        // Ecrire sur les champs sans avoir faire inspecter le champs puis l'inserer un mot below : apres
+        // on cherche d'abors l'element d'en haut puis on ecrit en fonction pour avoir le composant du bas
+        WebElement elementRecherches = DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")); 
+        elementRecherches.findElement(RelativeLocator.with(By.tagName("input")).below(elementRecherche)).sendKeys("test donnees apres");
         
         
         // Capture d'ecran via le navigateur
-        File scrFile = (File)(((TakesScreenshot) DriverMedge).getScreenshotAs(OutputType.FILE));
-        FileUtils.copyFile(scrFile,new File("./img1.png"));
+ /*       File scrFile = (File)(((TakesScreenshot) DriverMedge).getScreenshotAs(OutputType.FILE));
+        FileUtils.copyFile(scrFile,new File("./img1.png"));                                                  */
         
         
         // cliquer sur le bouton
