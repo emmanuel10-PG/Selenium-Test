@@ -17,6 +17,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -128,9 +130,13 @@ public class App
         elementRecherche.findElement(RelativeLocator.with(By.tagName("input")).above(elementRecherche)).sendKeys("test donnees avant");
         
         // Ecrire sur les champs sans avoir faire inspecter le champs puis l'inserer un mot below : apres
-        // on cherche d'abors l'element d'en haut puis on ecrit en fonction pour avoir le composant du bas
+        // On cherche d'abors l'element d'en haut puis on ecrit en fonction pour avoir le composant du bas
         WebElement elementRecherches = DriverMedge.findElement(By.cssSelector(".sc-1ws95ck-3 > input:nth-child(2)")); 
         elementRecherches.findElement(RelativeLocator.with(By.tagName("input")).below(elementRecherche)).sendKeys("test donnees apres");
+        
+        // temps d'attente explicite( on met un temps d'attente pour une condition d'un bouton, champ par exemple dans un formulaire
+        DriverMedge.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        WebElement reslt = new WebDriverWait(DriverMedge , Duration.ofSeconds(20)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".oxd-button")));
         
         
         // Capture d'ecran via le navigateur
@@ -139,7 +145,7 @@ public class App
         
         
         // cliquer sur le bouton
-//        DriverMedge.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
+        DriverMedge.findElement(By.cssSelector("ytd-button-renderer.ytd-consent-bump-v2-lightbox:nth-child(2) > yt-button-shape:nth-child(1) > button:nth-child(1)")).click();
         
         
     }
